@@ -1,0 +1,44 @@
+{
+  "name": "ndarray-complex",
+  "version": "0.0.0",
+  "description": "Complex arithmetic for ndarrays",
+  "main": "cops.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "cwise": "~0.1.2",
+    "ndarray-ops": "~0.1.3"
+  },
+  "devDependencies": {
+    "tap": "~0.4.2",
+    "ndarray": "~0.2.0"
+  },
+  "scripts": {
+    "test": "tap test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mikolalysenko/ndarray-complex.git"
+  },
+  "keywords": [
+    "complex",
+    "imaginary",
+    "real",
+    "ndarray",
+    "component-wise",
+    "array",
+    "math",
+    "linear",
+    "algebra",
+    "exponent",
+    "abs",
+    "multiply",
+    "divide",
+    "reciprocal"
+  ],
+  "author": "Mikola Lysenko",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "063dfc9cd5e196fd55ffbac9aa29173549653387"
+}

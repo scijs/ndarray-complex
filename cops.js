@@ -76,77 +76,59 @@ exports.conjeq = conjeq
 
 exports.mul = cwise({
   args: ["array", "array", "array", "array", "array", "array"],
-  pre: function() {
-    this.a = 0
-    this.b = 0
-    this.c = 0
-    this.d = 0
-    this.k1 = 0
-  },
   body: function(out_r, out_i, a_r, a_i, b_r, b_i) {
-    this.a = a_r
-    this.b = a_i
-    this.c = b_r
-    this.d = b_i
-    this.k1 = this.c * (this.a + this.b)
-    out_r = this.k1 - this.b * (this.c + this.d)
-    out_i = this.k1 + this.a * (this.d - this.c)
+    var a = a_r
+    var b = a_i
+    var c = b_r
+    var d = b_i
+    var k1 = c * (a + b)
+    out_r = k1 - b * (c + d)
+    out_i = k1 + a * (d - c)
+    console.log("here", out_r, out_i, a_r, a_i, b_r, b_i)
+
   }
 })
 
 exports.muleq = cwise({
   args: ["array", "array", "array", "array"],
-  pre: function() {
-    this.a = 0
-    this.b = 0
-    this.c = 0
-    this.d = 0
-    this.k1 = 0
-  },
   body: function(out_r, out_i, a_r, a_i, b_r, b_i) {
-    this.a = a_r
-    this.b = a_i
-    this.c = out_r
-    this.d = out_i
-    this.k1 = this.c * (this.a + this.b)
-    out_r = this.k1 - this.b * (this.c + this.d)
-    out_i = this.k1 + this.a * (this.d - this.c)
+    var a = a_r
+    var b = a_i
+    var c = out_r
+    var d = out_i
+    var k1 = c * (a + b)
+    out_r = k1 - b * (c + d)
+    out_i = k1 + a * (d - c)
   }
 })
 
 exports.muls = cwise({
   args: ["array", "array", "array", "array", "scalar", "scalar"],
   pre: function(out_r, out_i, a_r, a_i, s_r, s_i) {
-    this.a = 0
-    this.b = 0
-    this.k1 = 0
     this.u = s_r + s_i
     this.v = s_i - s_r
   },
   body: function(out_r, out_i, a_r, a_i, s_r, s_i) {
-    this.a = a_r
-    this.b = a_i
-    this.k1 = s_r * (this.a + this.b)
-    out_r = this.k1 - this.b * this.u
-    out_i = this.k1 + this.a * this.v
+    var a = a_r
+    var b = a_i
+    var k1 = s_r * (a + b)
+    out_r = k1 - b * this.u
+    out_i = k1 + a * this.v
   }
 })
 
 exports.mulseq = cwise({
   args: ["array", "array", "array", "array", "scalar", "scalar"],
   pre: function(out_r, out_i, s_r, s_i) {
-    this.a = 0
-    this.b = 0
-    this.k1 = 0
     this.u = s_r + s_i
     this.v = s_i - s_r
   },
   body: function(out_r, out_i, s_r, s_i) {
-    this.a = out_r
-    this.b = out_i
-    this.k1 = s_r * (this.a + this.b)
-    out_r = this.k1 - this.b * this.u
-    out_i = this.k1 + this.a * this.v
+    var a = out_r
+    var b = out_i
+    var k1 = s_r * (a + b)
+    out_r = k1 - b * this.u
+    out_i = k1 + a * this.v
   }
 })
 
@@ -241,32 +223,29 @@ exports.recipeq = cwise({
 exports.exp = cwise({
   args: ["array", "array", "array", "array"],
   pre: function() {
-    this.r = 0.0
     this.exp = Math.exp
     this.cos = Math.cos
     this.sin = Math.sin
   },
   body: function(out_r, out_i, a_r, a_i) {
-    this.r = exp(a_r)
-    out_r = this.r * this.cos(a_i)
-    out_i = this.r * this.sin(a_i)
+    var r = this.exp(a_r)
+    out_r = r * this.cos(a_i)
+    out_i = r * this.sin(a_i)
   }
 })
 
 exports.expeq = cwise({
   args: ["array", "array", "array", "array"],
   pre: function() {
-    this.r = 0.0
-    this.t = 0.0
     this.exp = Math.exp
     this.cos = Math.cos
     this.sin = Math.sin
   },
   body: function(out_r, out_i) {
-    this.r = exp(out_r)
-    this.t = out_ir
-    out_r = this.r * this.cos(this.t)
-    out_i = this.r * this.sin(this.t)
+    var r = this.exp(out_r)
+    var t = out_ir
+    out_r = r * this.cos(t)
+    out_i = r * this.sin(t)
   }
 })
 

@@ -91,7 +91,7 @@ exports.mul = cwise({
 
 exports.muleq = cwise({
   args: ["array", "array", "array", "array"],
-  body: function(out_r, out_i, a_r, a_i, b_r, b_i) {
+  body: function(out_r, out_i, a_r, a_i) {
     var a = a_r
     var b = a_i
     var c = out_r
@@ -148,7 +148,7 @@ exports.div = cwise({
 
 exports.diveq = cwise({
   args: ["array", "array", "array", "array"],
-  body: function(out_r, out_i, a_r, a_i, b_r, b_i) {
+  body: function(out_r, out_i, a_r, a_i) {
     var a = out_r
     var b = out_i
     var c = a_r

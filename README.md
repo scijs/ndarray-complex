@@ -6,16 +6,16 @@ Complex arithmetic operations for [ndarrays](https://github.com/mikolalysenko/nd
 ## Example
 
 ```javascript
-var ndarray = require("ndarray")
+var ndarray = require("zeros")
 var cops = require("ndarray-complex")
 
 //Generate some arrays
-var a_r = ndarray.zeros([10, 10])
-  , a_i = ndarray.zeros([10, 10])
-  , b_r = ndarray.zeros([10, 10])
-  , b_i = ndarray.zeros([10, 10])
-  , c_r = ndarray.zeros([10, 10])
-  , c_i = ndarray.zeros([10, 10])
+var a_r = zeros([10, 10])
+  , a_i = zeros([10, 10])
+  , b_r = zeros([10, 10])
+  , b_i = zeros([10, 10])
+  , c_r = zeros([10, 10])
+  , c_i = zeros([10, 10])
   
 //  ... do stuff ...
 

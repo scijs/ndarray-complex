@@ -76,7 +76,7 @@ exports.conjeq = conjeq
 
 exports.mul = cwise({
   args: ["array", "array", "array", "array", "array", "array"],
-  body: function(out_r, out_i, a_r, a_i, b_r, b_i) {
+  body: function cmul(out_r, out_i, a_r, a_i, b_r, b_i) {
     var a = a_r
     var b = a_i
     var c = b_r
@@ -84,14 +84,12 @@ exports.mul = cwise({
     var k1 = c * (a + b)
     out_r = k1 - b * (c + d)
     out_i = k1 + a * (d - c)
-    console.log("here", out_r, out_i, a_r, a_i, b_r, b_i)
-
   }
 })
 
 exports.muleq = cwise({
   args: ["array", "array", "array", "array"],
-  body: function(out_r, out_i, a_r, a_i) {
+  body: function cmuleq(out_r, out_i, a_r, a_i) {
     var a = a_r
     var b = a_i
     var c = out_r
@@ -108,7 +106,7 @@ exports.muls = cwise({
     this.u = s_r + s_i
     this.v = s_i - s_r
   },
-  body: function(out_r, out_i, a_r, a_i, s_r, s_i) {
+  body: function cmuls(out_r, out_i, a_r, a_i, s_r, s_i) {
     var a = a_r
     var b = a_i
     var k1 = s_r * (a + b)
@@ -118,12 +116,12 @@ exports.muls = cwise({
 })
 
 exports.mulseq = cwise({
-  args: ["array", "array", "array", "array", "scalar", "scalar"],
+  args: ["array", "array", "scalar", "scalar"],
   pre: function(out_r, out_i, s_r, s_i) {
     this.u = s_r + s_i
     this.v = s_i - s_r
   },
-  body: function(out_r, out_i, s_r, s_i) {
+  body: function cmulseq(out_r, out_i, s_r, s_i) {
     var a = out_r
     var b = out_i
     var k1 = s_r * (a + b)
@@ -134,7 +132,7 @@ exports.mulseq = cwise({
 
 exports.div = cwise({
   args: ["array", "array", "array", "array", "array", "array"],
-  body: function(out_r, out_i, a_r, a_i, b_r, b_i) {
+  body: function cdiv(out_r, out_i, a_r, a_i, b_r, b_i) {
     var a = a_r
     var b = a_i
     var c = b_r
@@ -148,7 +146,7 @@ exports.div = cwise({
 
 exports.diveq = cwise({
   args: ["array", "array", "array", "array"],
-  body: function(out_r, out_i, a_r, a_i) {
+  body: function cdiveq(out_r, out_i, a_r, a_i) {
     var a = out_r
     var b = out_i
     var c = a_r
@@ -170,7 +168,7 @@ exports.divs = cwise({
     this.u = s_r + s_i
     this.v = s_i - s_r
   },
-  body: function(out_r, out_i, a_r, a_i, s_r, s_i) {
+  body: function cdivs(out_r, out_i, a_r, a_i, s_r, s_i) {
     var a = a_r
     var b = a_i
     var k1 = this.c * (a + b)
@@ -180,7 +178,7 @@ exports.divs = cwise({
 })
 
 exports.divseq = cwise({
-  args: ["array", "array", "array", "array", "scalar", "scalar"],
+  args: ["array", "array", "scalar", "scalar"],
   pre: function(out_r, out_i, s_r, s_i) {
     var w = s_r * s_r + s_i * s_i
     s_r /= w
@@ -189,7 +187,7 @@ exports.divseq = cwise({
     this.u = s_r + s_i
     this.v = s_i - s_r
   },
-  body: function(out_r, out_i, s_r, s_i) {
+  body: function cdivseq(out_r, out_i, s_r, s_i) {
     var a = out_r
     var b = out_i
     var k1 = this.c * (a + b)
@@ -200,7 +198,7 @@ exports.divseq = cwise({
 
 exports.recip = cwise({
   args: ["array", "array", "array", "array"],
-  body: function(out_r, out_i, a_r, a_i) {
+  body: function crecip(out_r, out_i, a_r, a_i) {
     var a = a_r
     var b = a_i
     var w = a*a + b*b
@@ -211,7 +209,7 @@ exports.recip = cwise({
 
 exports.recipeq = cwise({
   args: ["array", "array", "array", "array"],
-  body: function(out_r, out_i) {
+  body: function crecipeq(out_r, out_i) {
     var a = out_r
     var b = out_i
     var w = a*a + b*b
@@ -227,7 +225,7 @@ exports.exp = cwise({
     this.cos = Math.cos
     this.sin = Math.sin
   },
-  body: function(out_r, out_i, a_r, a_i) {
+  body: function cexp(out_r, out_i, a_r, a_i) {
     var r = this.exp(a_r)
     out_r = r * this.cos(a_i)
     out_i = r * this.sin(a_i)
@@ -241,7 +239,7 @@ exports.expeq = cwise({
     this.cos = Math.cos
     this.sin = Math.sin
   },
-  body: function(out_r, out_i) {
+  body: function cexpeq(out_r, out_i) {
     var r = this.exp(out_r)
     var t = out_ir
     out_r = r * this.cos(t)
@@ -251,11 +249,8 @@ exports.expeq = cwise({
 
 exports.mag = cwise({
   args: ["array", "array", "array"],
-  body: function(out, a_r, a_i) {
+  body: function cmag(out, a_r, a_i) {
     out = a_r * a_r + a_i * a_i
-  },
-  post: function(out) {
-    return out
   }
 })
 
@@ -264,11 +259,8 @@ exports.abs = cwise({
   pre: function() {
     this.sqrt = Math.sqrt
   },
-  body: function(out, a_r, a_i) {
+  body: function cabs(out, a_r, a_i) {
     out = this.sqrt(a_r * a_r + a_i * a_i)
-  },
-  post: function(out) {
-    return out
   }
 })
 

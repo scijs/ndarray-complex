@@ -208,7 +208,7 @@ exports.recip = cwise({
 })
 
 exports.recipeq = cwise({
-  args: ["array", "array", "array", "array"],
+  args: ["array", "array"],
   body: function crecipeq(out_r, out_i) {
     var a = out_r
     var b = out_i
@@ -233,7 +233,7 @@ exports.exp = cwise({
 })
 
 exports.expeq = cwise({
-  args: ["array", "array", "array", "array"],
+  args: ["array", "array"],
   pre: function() {
     this.exp = Math.exp
     this.cos = Math.cos

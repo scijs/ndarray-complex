@@ -6,7 +6,7 @@ var ops = require("ndarray-ops")
 var zeros = require("zeros")
 var unpack = require("ndarray-unpack")
 
-require("tap").test("ndarray-complex", function(t) {
+require("tape").test("ndarray-complex", function(t) {
 
   var a_r = zeros([3])
     , a_i = zeros([3])

@@ -137,10 +137,18 @@ exports.div = cwise({
     var b = a_i
     var c = b_r
     var d = b_i
-    var w = c * c + d * d
-    var k1 = c * (a + b)
-    out_r = (k1 + b * (c - d)) / w
-    out_i = (k1 - a * (d + c)) / w
+    var e, f;
+    if( Math.abs(c) >= Math.abs(d) ) {
+      e = d/c;
+      f = c + d*e;
+      out_r = (a + b*e) / f;
+      out_i = (b - a*e) / f;
+    } else {
+      e = c/d;
+      f = c*e + d;
+      out_r = (a*e + b) / f;
+      out_i = (b*e - a) / f;
+    }
   }
 })
 
@@ -151,10 +159,18 @@ exports.diveq = cwise({
     var b = out_i
     var c = a_r
     var d = a_i
-    var w = c * c + d * d
-    var k1 = c * (a + b)
-    out_r = (k1 + b * (c - d)) / w
-    out_i = (k1 - a * (d + c)) / w
+    var e, f;
+    if( Math.abs(c) >= Math.abs(d) ) {
+      e = d/c;
+      f = c + d*e;
+      out_r = (a + b*e) / f;
+      out_i = (b - a*e) / f;
+    } else {
+      e = c/d;
+      f = c*e + d;
+      out_r = (a*e + b) / f;
+      out_i = (b*e - a) / f;
+    }
   }
 })
 
